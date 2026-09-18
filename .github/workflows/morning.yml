@@ -17,3 +17,5 @@ jobs:
     - run: pip install -r requirements.txt
 
     - run: python brief.py
+  env:
+    GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
