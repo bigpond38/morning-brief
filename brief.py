@@ -1,13 +1,11 @@
-from google import genai
 import os
 
-client = genai.Client(
-    api_key=os.environ["GEMINI_API_KEY"]
-)
+api_key = os.environ.get("GEMINI_API_KEY")
 
-response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents="Give me a 3 sentence summary of today's global financial markets."
-)
+print("Key exists:", api_key is not None)
 
-print(response.text)
+if api_key:
+    print("First 5 chars:", api_key[:5])
+    print("Length:", len(api_key))
+else:
+    print("No key found")
