@@ -1,8 +1,23 @@
 import os
+import requests
 
 api_key = os.environ["GEMINI_API_KEY"]
 
-print(type(api_key))
-print("Length:", len(api_key))
-print("Start:", api_key[:4])
-print("End:", api_key[-4:])
+url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+
+payload = {
+    "contents": [
+        {
+            "parts": [
+                {
+                    "text": "Say hello to Harry."
+                }
+            ]
+        }
+    ]
+}
+
+response = requests.post(url, json=payload)
+
+print("Status:", response.status_code)
+print(response.text)
